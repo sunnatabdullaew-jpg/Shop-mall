@@ -1,10 +1,14 @@
 const request = new XMLHttpRequest();
 const elList = document.querySelector(".cards");
 const loading = document.querySelector(".loader");
-const logo = document.querySelector(".nav__logo");
+const logo = document.querySelector(".nav__logo"); 
+const footer = document.querySelector(".footer");
+const nav = document.querySelector(".navbar");
+const load = document.querySelector(".loadingio-spinner-spin-nq4q5u6dq7r")
 
-// Показываем loader при старте
-
+load.style.display = "flex";
+nav.style.display = "none";
+footer.style.display = "none";
 request.addEventListener("readystatechange", () => {
   if (request.readyState === 4) {
     const data = JSON.parse(request.responseText);
@@ -53,14 +57,11 @@ function showData(data) {
         </div>
       </article>
     `;
+    footer.style.display = "block";
+    nav.style.display = "flex"
+    load.style.display = "none";
   });
 }
-
-const Form = document.querySelector(".Form");
-const nick = document.querySelector("#text");
-const pwd = document.querySelector("#password");
-const email = document.querySelector("#email");
-
 const wrap = document.querySelector(".wrapper");
   const showToast = (text, color = "red") => {
       Toastify({
@@ -78,13 +79,4 @@ const wrap = document.querySelector(".wrapper");
         }
       }).showToast();
     };
-Form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  if (!nick.value.trim() && !pwd.value.trim() && !email.value.trim()) {
-    showToast("Xatolik yuz berdi!", "red");
-  } else {
-    wrap.classList.add("flex");
-    Form.classList.add("none");
-    showToast("Muvaffaqiyatli bajarildi!", "green");
-  }
-});
+wrap.style.display = "block";
